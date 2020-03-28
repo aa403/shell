@@ -1,0 +1,70 @@
+
+$ touch .bash_aliases
+$ nano .bash_aliases
+
+```
+alias cheats='cat ~/.bash_aliases'
+alias ll='ls -la'
+alias llg='ll | grep'
+alias ..='cd ../'
+alias ..='cd ../'                           # Go back 1 directory level
+alias ...='cd ../../'                       # Go back 2 directory levels
+alias .3='cd ../../../'                     # Go back 3 directory levels
+alias .4='cd ../../../../'                  # Go back 4 directory levels
+alias .5='cd ../../../../../'               # Go back 5 directory levels
+alias .6='cd ../../../../../../'            # Go back 6 directory levels
+alias cls='clear'
+
+#   ---------------------------
+#   6. NETWORKING
+#   ---------------------------
+
+alias myip='curl ip.appspot.com'                    # myip:         Public facing IP Address
+alias netCons='lsof -i'                             # netCons:      Show all open TCP/IP sockets
+alias flushDNS='dscacheutil -flushcache'            # flushDNS:     Flush out the DNS Cache
+alias lsock='sudo /usr/bin/lsof -i -P'             # lsock:        Display open sockets
+alias lsockU='sudo /usr/bin/lsof -nP | grep UDP'   # lsockU:       Display only open UDP sockets
+alias lsockT='sudo /usr/bin/lsof -nP | grep TCP'   # lsockT:       Display only open TCP sockets
+alias ipInfo0='ipconfig getpacket en0'              # ipInfo0:      Get info on connections for en0
+alias ipInfo1='ipconfig getpacket en1'              # ipInfo1:      Get info on connections for en1
+alias openPorts='sudo lsof -i | grep LISTEN'        # openPorts:    All listening connections
+alias showBlocked='sudo ipfw list'                  # showBlocked:  All ipfw rules inc/ blocked IPs
+
+```
+
+
+$ mkdir workspace
+$ mkdir .virtualenvs
+$ python3
+$ nano ~/.profile 
+```
+export VIRTUALENVWRAPPER_PYTHON="/usr/bin/python3.7"
+export WORKON_HOME="${HOME}/.virtualenvs"
+export PROJECT_HOME="${HOME}/workspace"
+
+```
+
+$ nano ~/.bashrc 
+```
+# virtualenv
+. /usr/local/bin/virtualenvwrapper.sh
+
+function mkvenv(){
+    mkvirtualenv -p `which python3.7` $1
+    cd ~/workspace/$2
+    setvirtualenvproject
+}
+
+
+# direnv
+eval "$(direnv hook bash)"
+
+```
+
+$ sudo apt-get update
+$ sudo apt install python3-pip
+$ sudo pip3 install virtualenv
+$ sudo pip3 install virtualenvwrapper=='4.8.4'
+
+$ mkdir ~/workspace/trial
+$ mkvenv trial trial
